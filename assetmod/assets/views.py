@@ -55,6 +55,7 @@ class RepairViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = RepairSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = '__all__'
     filterset_fields = ['asset']
 
 
@@ -64,4 +65,5 @@ class TransferViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TransferSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    ordering_fields = '__all__'
     filterset_fields = ['asset']
