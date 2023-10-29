@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "8659a569-cf91-4adf-8ac8-98d227712260",
+		"name": "Employee Asset Mgt",
+		"description": "This collection shows how to interact with employee asset management built on Django with Django rest framework. In this collection you can be able:\n\n1. Add users then create employees\n2. Add and manage assets\n3. Creating new assests\n    \n\n- Doing asset transfers between employees\n    \n\nCreate an environment add\n\n1. **base_url**: `http://localhost:8000`\n2. **token**:",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15444678"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Sydney\",\n    \"last_name\": \"Sygel\",\n    \"email\": \"sydney@gmail.com\",\n    \"username\": \"sydney\",\n    \"password\": \"sydney123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Use this endpoint to register new Users"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"rovine\",\n    \"password\": \"rovine123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login",
+								""
+							]
+						},
+						"description": "Login with `username` and `password` to get an auth `token` you can use through other modules.\n\nTo use the token to authorize `requests` you add an `auth header` like:\n\n``` javascript\nAuthorization: Bearer <token>\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "All users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Display all users, requires `authorization`"
+					},
+					"response": []
+				},
+				{
+					"name": "Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Get single user information, requires `authorization`"
+					},
+					"response": []
+				}
+			],
+			"description": "This module helps in CRUD user Managemement"
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 2,\n    \"employee_no\": \"EX_0002\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/employees/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 1,\n    \"employee_no\": \"EX_0001-UPDATED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/employees/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employees",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/employees/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/employees/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"employees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This module helps is employee management that is `creation`, `updating` and also `deleting`. To `delete` an employee hit the single employee endpoint with the `DELETE` method"
+		},
+		{
+			"name": "Assets",
+			"item": [
+				{
+					"name": "Create Asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Harrier 001\",\n    \"description\": \"Employee car for InkMoko\",\n    \"serial_no\": \"000323823483O\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/assets/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"assets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Asset",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Harrier 001\",\n    \"description\": \"Employee car for InkMoko\",\n    \"serial_no\": \"000323823483O-UPDATED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/assets/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"assets",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All assets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/assets/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"assets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Asset",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/assets/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"assets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This module helps in `CRUD` asset management"
+		},
+		{
+			"name": "Asset Transfers",
+			"item": [
+				{
+					"name": "Create a Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"old_employee\": 1,\n    \"current_employee\": 2,\n    \"asset\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transfers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All transfers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transfers/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Transfer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transfers/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transfers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Asset Transfers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transfers/?asset=1&ordering=-created_at",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transfers",
+								""
+							],
+							"query": [
+								{
+									"key": "asset",
+									"value": "1"
+								},
+								{
+									"key": "ordering",
+									"value": "-created_at"
+								}
+							]
+						},
+						"description": "Using `query params`, you can get to see a single asset **transfer history**, use `ordering` param with `create_at` field to see the entire history.\n\nUse `asset` param to filter for a given asset based on `asset id` in the database"
+					},
+					"response": []
+				}
+			],
+			"description": "This module helps to manage asset transfers that is assigning a new asset to an employee and or transfering the asset to another employee.\n\nWhen you are assigning a new asset to an employee you don't pass in the `old_employee` key, that way, it will be a new assignment.\n\nWhen transfering an asset from an employee to another, you pass in the `old_employee` `id (key)` and the `current_employee` `id`"
+		},
+		{
+			"name": "Repairs",
+			"item": [
+				{
+					"name": "Create Asset Repair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"asset\": 2,\n    \"vendor\": \"Repair Your Engine Thika Road\",\n    \"entry_date\": \"2023-11-1 14:30\",\n    \"exit_date\": \"2023-11-3 11:30\",\n    \"cost\": 2000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/repairs/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All repairs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get repairs per asset",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/repairs/?asset=2&ordering=-created_at",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								""
+							],
+							"query": [
+								{
+									"key": "asset",
+									"value": "2"
+								},
+								{
+									"key": "ordering",
+									"value": "-created_at"
+								}
+							]
+						},
+						"description": "Using `query params`, you can get to see a single asset **repair history**, use `ordering` param with `create_at` field to see the entire history.\n\nUse `asset` param to filter for a given asset based on `asset id` in the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Single Asset Repair",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/repairs/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"repairs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This module will help manage asset repairs."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "b9f1bb40ffcbd5c65c64786ae79bdc226aa9340e",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
