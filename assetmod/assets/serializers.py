@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from .models import Employee, Asset, Repair, Transfer
+from datetime import timedelta
+
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -36,10 +38,25 @@ class AssetSerializer(serializers.ModelSerializer):
 
 
 class RepairSerializer(serializers.ModelSerializer):
+    time_spent_in_garage = serializers.SerializerMethodField()
 
     class Meta:
         model = Repair
         fields = '__all__'
+
+    def get_time_spent_in_garage(self, obj):
+        entry_date = obj.entry_date
+        exit_date = obj.exit_date
+
+        if entry_date and exit_date:
+            time_spent = exit_date - entry_date
+            days = time_spent.days
+            hours, remainder = divmod(time_spent.seconds, 3600)
+            minutes, _ = divmod(remainder, 60)
+
+            return f"{days} days, {hours} hours, {minutes} minutes"
+        else:
+            return "Time in garage not calculated"
 
 
 class TransferSerializer(serializers.ModelSerializer):

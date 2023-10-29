@@ -11,7 +11,6 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-
 class Employee(TimeStampedModel):
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     employee_no = models.CharField(max_length=50, blank=True, null=True)
