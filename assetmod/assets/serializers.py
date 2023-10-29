@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from .models import Employee, Asset, Repair, Transfer
@@ -43,6 +44,12 @@ class RepairSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repair
         fields = '__all__'
+
+    def validate(self, data):
+        if data.get('entry_date') and data.get('exit_date'):
+            if data['entry_date'] >= data['exit_date']:
+                raise ValidationError("Entry date must be before exit date.")
+        return data
 
     def get_time_spent_in_garage(self, obj):
         entry_date = obj.entry_date
