@@ -12,6 +12,6 @@ router.register(r'repairs', views.RepairViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('login/', CustomLogin.as_view()),
+    path('login/', views.CustomLogin.as_view()),
     path('', include(router.urls)),
 ]

@@ -26,7 +26,7 @@ class CustomLogin(ObtainAuthToken):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    model = User
+    queryset = User.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
     permission_classes = [IsAuthenticatedOrPostOnly]
     serializer_class = UserSerializer
@@ -34,7 +34,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
-    model = Employee
+    queryset = Employee.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = EmployeeSerializer
@@ -42,7 +42,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
 
 class AssetViewSet(viewsets.ModelViewSet):
-    model = Asset
+    queryset = Asset.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AssetSerializer
@@ -50,7 +50,7 @@ class AssetViewSet(viewsets.ModelViewSet):
 
 
 class RepairViewSet(viewsets.ModelViewSet):
-    model = Repair
+    queryset = Repair.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = RepairSerializer
@@ -59,7 +59,7 @@ class RepairViewSet(viewsets.ModelViewSet):
 
 
 class TransferViewSet(viewsets.ModelViewSet):
-    model = Transfer
+    queryset = Transfer.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TransferSerializer
