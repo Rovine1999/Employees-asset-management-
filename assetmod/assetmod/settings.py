@@ -49,6 +49,12 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+
+     #Third party miiddleware
+    "corsheaders.middleware.CorsMiddleware",
+
+
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,6 +87,8 @@ WSGI_APPLICATION = 'assetmod.wsgi.application'
 # CORS_ALLOWED_ORIGINS = []
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
 
 
 # Database
@@ -124,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
