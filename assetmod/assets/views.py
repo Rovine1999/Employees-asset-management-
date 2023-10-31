@@ -10,6 +10,7 @@ from .auth import AUTH_CLASS
 from .permissions import IsAuthenticatedOrPostOnly
 
 
+# CustomLogin class is used to override the default login view
 class CustomLogin(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
@@ -24,7 +25,7 @@ class CustomLogin(ObtainAuthToken):
             'user': UserSerializer(user).data
         })
 
-
+# UserViewSet is used to view and edit user details
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
@@ -32,7 +33,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     filter_backends = [filters.OrderingFilter]
 
-
+# EmployeeViewSet is used to view and edit employee details
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
@@ -40,7 +41,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     filter_backends = [filters.OrderingFilter]
 
-
+# AssetViewSet is used to view and edit asset details
 class AssetViewSet(viewsets.ModelViewSet):
     queryset = Asset.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
@@ -48,7 +49,7 @@ class AssetViewSet(viewsets.ModelViewSet):
     serializer_class = AssetSerializer
     filter_backends = [filters.OrderingFilter]
 
-
+# RepairViewSet is used to view and edit repair details
 class RepairViewSet(viewsets.ModelViewSet):
     queryset = Repair.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]
@@ -58,7 +59,7 @@ class RepairViewSet(viewsets.ModelViewSet):
     ordering_fields = '__all__'
     filterset_fields = ['asset']
 
-
+# TransferViewSet is used to view and edit transfer details
 class TransferViewSet(viewsets.ModelViewSet):
     queryset = Transfer.objects.all().order_by('id')
     authentication_classes = [AUTH_CLASS]

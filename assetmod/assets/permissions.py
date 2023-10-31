@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
-
+# This class is used to override the default keyword used for token authentication
 class IsAuthenticatedOrPostOnly(BasePermission):
     def has_permission(self, request, view):
         if request.method == 'POST':

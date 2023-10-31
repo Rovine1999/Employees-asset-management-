@@ -8,7 +8,7 @@ With this system, you can be able to add employees, add assets, assign assets to
 
 1. Create a working folder
 2. Open the folder in terminal/cmd
-3. Run `git clone git@github.com:Rovine1999/Employees-asset-management-.git`
+3. Download the zip file into the folder or run git clone `git clone git@github.com:Rovine1999/Employees-asset-management-.git`
 4. Then run `cd Employees-asset-management-`
 5. Create a virtual environment
 

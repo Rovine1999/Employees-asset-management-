@@ -49,14 +49,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-
-     #Third party miiddleware
-    "corsheaders.middleware.CorsMiddleware",
-
-
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+      #Third party miiddleware
+    "corsheaders.middleware.CorsMiddleware", # Adding cors middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
